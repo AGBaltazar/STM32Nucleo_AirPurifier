@@ -7,6 +7,9 @@ The goal here is to create the Header file for the MCU along with initializing t
 
 ## Tools
 STM32 Nucleo Board
+
 MOSFET Transistor
+
 Jumper Wires 
+
 
