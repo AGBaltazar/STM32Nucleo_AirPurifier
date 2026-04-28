@@ -12,4 +12,13 @@ MOSFET Transistor
 
 Jumper Wires 
 
+## Setup
+This project will run on a few simple (hopefully) files which would include:
+-gpio h/c file for register mapping and functions
+-main C for the infinite while loop
+-stm32c031 for mcu mapping and addressing
 
+## To Do
+- [x] Create files for GPIO and MCU specific registers
+- [] Mapping the MCU memory 
+- [] GPIO initializing and de-init
