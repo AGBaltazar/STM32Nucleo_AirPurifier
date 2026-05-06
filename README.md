@@ -24,7 +24,8 @@ This project will run on a few simple (hopefully) files which would include:
 
 ## To Do
 - [x] Create files for GPIO and MCU specific registers
-- [] Mapping the MCU memory 
+- [x] Mapping the MCU memory 
+- [] Mapping peripherals
 - [] GPIO initializing and de-init
 
 ## Phases

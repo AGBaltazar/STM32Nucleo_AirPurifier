@@ -8,6 +8,8 @@
 #ifndef STM32C031_H_
 #define STM32C031_H_
 
+#define __vo volatile
+
 /*Defining the base address of flash and SRAM based off docs*/
 //In this header file we will be defining base addresses of memory, peripherals along with structures that contain the peripherals registers as needed
 
@@ -32,5 +34,24 @@
 /*Defining the peripherals on the AHB Bus*/
 #define RCC_BASEADDR (AHB_BASEADDR + 0x1000U)
 
+//Defining the registers that will be adjusted/activated
+typedef struct{
+	__vo uint32_t MODER; //GPIO port mode register
+	__vo uint32_t OTYPER; //GPIO port output type register
+	__vo uint32_t PUPDR; //GPIO port pull-up/pull-down register
+	__vo uint32_t ODR; //GPIO port output data register
+	__vo uint32_t IDR; //GPIO port input data register
+}GPIO_Reg_Def_t;
+
+typedef struct{
+	__vo uint32_t IOPENR; //RCC I/O port clock enable register
+}RCC_Reg_Def_t;
+
+#define GPIOA	((GPIO_Reg_Def_t*)GPIOA_BASEADDR)
+#define GPIOB	((GPIO_Reg_Def_t*)GPIOB_BASEADDR)
+#define GPIOC	((GPIO_Reg_Def_t*)GPIOC_BASEADDR)
+#define GPIOD	((GPIO_Reg_Def_t*)GPIOD_BASEADDR)
+#define GPIOF	((GPIO_Reg_Def_t*)GPIOF_BASEADDR)
+#define RCC 	((RCC_Reg_Def_t*)RCC_BASEADDR)
 
 #endif /* STM32C031_H_ */
