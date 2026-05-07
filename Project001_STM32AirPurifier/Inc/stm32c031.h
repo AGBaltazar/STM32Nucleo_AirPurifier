@@ -38,9 +38,15 @@
 typedef struct{
 	__vo uint32_t MODER; //GPIO port mode register
 	__vo uint32_t OTYPER; //GPIO port output type register
+	__vo uint32_t OSPEEDR; //GPIO port output speed register
 	__vo uint32_t PUPDR; //GPIO port pull-up/pull-down register
-	__vo uint32_t ODR; //GPIO port output data register
 	__vo uint32_t IDR; //GPIO port input data register
+	__vo uint32_t ODR; //GPIO port output data register
+	__vo uint32_t BSRR; //GPIO port bit set/reset register
+	__vo uint32_t LCKR; //GPIO port configuration lock register
+	__vo uint32_t AFRL; //GPIO alternate function low register
+	__vo uint32_t AFHL; //GPIO alternate function high register
+	__vo uint32_t BRR; //GPIO port bit reset register
 }GPIO_Reg_Def_t;
 
 typedef struct{
