@@ -22,11 +22,32 @@ This project will run on a few simple (hopefully) files which would include:
 -main C for the infinite while loop
 -stm32c031 for mcu mapping and addressing
 
+## Peripherals Utilized
+
+### For the pump control pin (output)
+- GPIOx_MODER
+
+- GPIOx_OTYPER 
+
+- GPIOx_PUPDR
+
+- GPIOx_ODR or GPIOx_BSRR 
+
+### For the button pin (input)
+- GPIOx_MODER 
+
+- GPIOx_PUPDR
+
+- GPIOx_IDR 
+
+
 ## To Do
 - [x] Create files for GPIO and MCU specific registers
 - [x] Mapping the MCU memory 
-- [] Mapping peripherals
-- [] GPIO initializing and de-init
+- [x] Mapping peripherals
+- [x] GPIO initializing and de-init
+- [] GPIO setup
+
 
 ## Phases
 ### Phase 1

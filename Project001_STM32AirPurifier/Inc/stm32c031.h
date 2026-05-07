@@ -54,4 +54,12 @@ typedef struct{
 #define GPIOF	((GPIO_Reg_Def_t*)GPIOF_BASEADDR)
 #define RCC 	((RCC_Reg_Def_t*)RCC_BASEADDR)
 
+/*Clock Macros for GPIO Enabling and Disabling*/
+/*Breaking this down, the macro will go to the register IOPENR and set the pin to 1 which enabled the clock*/
+#define GPIOA_PCLK_EN()		(RCC -> IOPENR |= (1 << 0))
+#define GPIOB_PCLK_EN()		(RCC -> IOPENR |= (1 << 1))
+#define GPIOA_PCLK_DI()		(RCC -> IOPENR &= ~(1 << 0))
+#define GPIOB_PCLK_DI()		(RCC -> IOPENR &= ~(1 << 1))
+
+
 #endif /* STM32C031_H_ */
