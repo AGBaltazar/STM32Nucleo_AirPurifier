@@ -25,28 +25,28 @@ This project will run on a few simple (hopefully) files which would include:
 ## Peripherals Utilized
 
 ### For the pump control pin (output)
-- GPIOx_MODER
+- GPIOx_MODER (Set to Output)
 
-- GPIOx_OTYPER 
+- GPIOx_OTYPER (Set to push-pull)
 
-- GPIOx_PUPDR
+- GPIOx_PUPDR (Set to  no-pull)
 
-- GPIOx_ODR or GPIOx_BSRR 
+- GPIOx_ODR or GPIOx_BSRR (Set to set pin)
 
 ### For the button pin (input)
-- GPIOx_MODER 
+- GPIOx_MODER (Set to input)
 
-- GPIOx_PUPDR
+- GPIOx_PUPDR (Set to pull-up)
 
-- GPIOx_IDR 
+- GPIOx_IDR (Set to read pin)
 
 
 ## To Do
 - [x] Create files for GPIO and MCU specific registers
 - [x] Mapping the MCU memory 
 - [x] Mapping peripherals
-- [x] GPIO initializing and de-init
-- [] GPIO setup
+- [x] GPIO initializing and de-init functions
+- [] GPIO setup on main page
 
 
 ## Phases
