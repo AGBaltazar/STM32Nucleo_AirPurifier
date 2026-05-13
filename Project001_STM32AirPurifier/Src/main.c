@@ -17,6 +17,7 @@
  */
 
 #include <stdint.h>
+#include "stm32c031.h"
 
 #if !defined(__SOFT_FP__) && defined(__ARM_FP)
   #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
@@ -24,6 +25,30 @@
 
 int main(void)
 {
-    /* Loop forever */
-	for(;;);
+
+	GPIO_HANDLE_t SigOut;
+	SigOut.pGPIOx = GPIOA;
+	SigOut.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_11;//Pin 11 is chosen per the docs as this is an IO
+	SigOut.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_OUT;
+	SigOut.GPIO_PinConfig.GPIO_PinOPType = GPIO_OPTYPE_PP;
+	SigOut.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PUPDR_NO;
+	SigOut.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
+
+	GPIO_PeriClockControl(GPIOA,ENABLE);
+
+	GPIO_HANDLE_t UserButton;
+	UserButton.pGPIOx = GPIOB;
+	UserButton.GPIO_PinConfig.GPIO_PinNumber = GPIO_PIN_NO_13;
+	UserButton.GPIO_PinConfig.GPIO_PinMode = GPIO_MODE_IN;
+	UserButton.GPIO_PinConfig.GPIO_PinPuPdControl = GPIO_PUPDR_PU;
+	UserButton.GPIO_PinConfig.GPIO_PinSpeed = GPIO_SPEED_LOW;
+	GPIO_PeriClockControl(GPIOB,ENABLE);
+
+	GPIO_Init(&SigOut);
+	GPIO_Init(&UserButton);
+
+	while(1){
+
+	}
+
 }

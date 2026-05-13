@@ -4,6 +4,10 @@
  *  Created on: Apr 28, 2026
  *      Author: Alejandro
  */
+#include "gpio.h"
+#include <stdint.h>
+#include "stm32c031.h"
+
 void GPIO_PeriClockControl(GPIO_Reg_Def_t *pGPIOx, uint8_t EnorDi){
 	if (EnorDi == ENABLE){
 		if(pGPIOx == GPIOA){
@@ -12,30 +16,12 @@ void GPIO_PeriClockControl(GPIO_Reg_Def_t *pGPIOx, uint8_t EnorDi){
 		else if(pGPIOx == GPIOB){
 					GPIOB_PCLK_EN();
 				}
-		else if(pGPIOx == GPIOC){
-					GPIOC_PCLK_EN();
-				}
-		else if(pGPIOx == GPIOD){
-					GPIOD_PCLK_EN();
-				}
-		else if(pGPIOx == GPIOF){
-					GPIOF_PCLK_EN();
-				}
 	} else{
 		if(pGPIOx == GPIOA){
 				GPIOA_PCLK_DI();
 				}
 		else if(pGPIOx == GPIOB){
 				GPIOB_PCLK_DI();
-				}
-		else if(pGPIOx == GPIOC){
-				GPIOC_PCLK_DI();
-				}
-		else if(pGPIOx == GPIOD){
-				GPIOD_PCLK_DI();
-				}
-		else if(pGPIOx == GPIOF){
-				GPIOF_PCLK_DI();
 				}
 	}
 }
@@ -76,14 +62,7 @@ void GPIO_Init(GPIO_HANDLE_t *pGPIOHandle){
 	pGPIOHandle->pGPIOx->OTYPER &= ~(0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 	pGPIOHandle->pGPIOx->OTYPER |= temporary;
 
-	//5. Configure the alternate functionality
-	if(pGPIOHandle->GPIO_PinConfig.GPIO_PinMode == GPIO_MODE_ALT){
-		// since there are two alternate functions, High and Low, we need to pick which is needed
-		uint8_t temp2;
-		temp2 = pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber % 8;
-		pGPIOHandle->pGPIOx->AFRH &= ~(0xF << (4 * temp2));
-		pGPIOHandle->pGPIOx->AFRH |= (pGPIOHandle->GPIO_PinConfig.GPIO_PinAltFunMode << (4 * temp2));
-	}
+
 }
 
 

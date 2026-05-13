@@ -7,11 +7,11 @@
 
 #ifndef STM32C031_H_
 #define STM32C031_H_
+#include <stdint.h>
 
 #define __vo volatile
 
 /*Defining the base address of flash and SRAM based off docs*/
-//In this header file we will be defining base addresses of memory, peripherals along with structures that contain the peripherals registers as needed
 
 #define FLASH_BASEADDR	0x08000000U
 #define SRAM1_BASEADDR	0x20000000U
@@ -67,5 +67,10 @@ typedef struct{
 #define GPIOA_PCLK_DI()		(RCC -> IOPENR &= ~(1 << 0))
 #define GPIOB_PCLK_DI()		(RCC -> IOPENR &= ~(1 << 1))
 
+#define ENABLE 1
+#define DISABLE 0
+
+#include "../drivers/gpio.c"
+#include "../drivers/gpio.h"
 
 #endif /* STM32C031_H_ */
