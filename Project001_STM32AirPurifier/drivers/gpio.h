@@ -8,8 +8,6 @@
 #ifndef GPIO_H_
 #define GPIO_H_
 #include <stdint.h>
-
-
 #include "stm32c031.h"
 
 typedef struct{
@@ -76,6 +74,11 @@ typedef struct{
 //Now to initialize the APIs which are just functions that get called that change the GPIO
 void GPIO_Init(GPIO_HANDLE_t *pGPIOHandle);
 void GPIO_PeriClockControl(GPIO_Reg_Def_t *pGPIOx, uint8_t EnorDi);
+uint8_t GPIO_ReadFromInputPin(GPIO_Reg_Def_t *pGPIOx, uint8_t Pin_Number);
+void GPIO_ToggleOutputPin(GPIO_Reg_Def_t *pGPIOx, uint8_t Pin_Number);
+
+void MotorOn(int delay);
+void MotorOff(int delay);
 
 
 #endif /* GPIO_H_ */

@@ -67,10 +67,9 @@ typedef struct{
 #define GPIOA_PCLK_DI()		(RCC -> IOPENR &= ~(1 << 0))
 #define GPIOB_PCLK_DI()		(RCC -> IOPENR &= ~(1 << 1))
 
+
+
 #define ENABLE 1
 #define DISABLE 0
-
-#include "../drivers/gpio.c"
-#include "../drivers/gpio.h"
 
 #endif /* STM32C031_H_ */

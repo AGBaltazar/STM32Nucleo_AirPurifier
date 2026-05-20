@@ -4,9 +4,9 @@
  *  Created on: Apr 28, 2026
  *      Author: Alejandro
  */
+
 #include "gpio.h"
 #include <stdint.h>
-#include "stm32c031.h"
 
 void GPIO_PeriClockControl(GPIO_Reg_Def_t *pGPIOx, uint8_t EnorDi){
 	if (EnorDi == ENABLE){
@@ -40,8 +40,6 @@ void GPIO_Init(GPIO_HANDLE_t *pGPIOHandle){
 		//Now we are storing the value into the actual register using the base address
 		pGPIOHandle->pGPIOx->MODER |= temporary;
 
-	}else{
-		//GPIO pin is in interrupt mode
 	}
 
 	//2. Configure the Speed
@@ -61,8 +59,17 @@ void GPIO_Init(GPIO_HANDLE_t *pGPIOHandle){
 	temporary = (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType << (pGPIOHandle->GPIO_PinConfig.GPIO_PinOPType));
 	pGPIOHandle->pGPIOx->OTYPER &= ~(0x1 << pGPIOHandle->GPIO_PinConfig.GPIO_PinNumber);
 	pGPIOHandle->pGPIOx->OTYPER |= temporary;
-
-
 }
 
+void GPIO_ToggleOutputPin(GPIO_Reg_Def_t *pGPIOx, uint8_t Pin_Number){
+	pGPIOx->ODR = pGPIOx->ODR ^ (1 << Pin_Number);
+}
+
+uint8_t GPIO_ReadFromInputPin(GPIO_Reg_Def_t *pGPIOx, uint8_t Pin_Number){
+
+	uint8_t value;
+	//We are going to get the eight value from the pin position
+	value = (uint8_t)((pGPIOx->IDR >> Pin_Number) & 0x00000001);
+	return value;
+}
 
